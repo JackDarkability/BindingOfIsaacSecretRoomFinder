@@ -23,6 +23,8 @@ The program is made as is and is not guaranteed to be accurate
 (for example when there is no suitable position to be connected to more than one room, 
 the game will put it connected to only one room, this is not represented in the program), 
 but should be a good guide to finding secret rooms in the game
+
+© 2024 Jack Newton
 """
 
 root = Tk()
