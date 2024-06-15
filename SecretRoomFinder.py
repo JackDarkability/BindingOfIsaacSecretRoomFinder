@@ -82,7 +82,7 @@ roomIcons = [
 ]
 
 
-def btnLClick(b):
+def changeRoom(b):
     # print(f"clicked {i}")
     currentImageAcro = b.cget("text")
     currentIndex = next(
@@ -100,11 +100,16 @@ def btnLClick(b):
         b.configure(image=newImage, text=newAcro)
 
 
-def btnRClick(b):
+def resetRoom(b):
     newIndex = 0
     newImage, newAcro = roomIcons[newIndex]
     b.configure(image=newImage, text=newAcro)
 
+def resetAllRooms(b):
+    for row in range(sizeOfMap):
+        for col in range(sizeOfMap):
+            button = btns_frame.grid_slaves(row=row + 1, column=col)[0]
+            resetRoom(button)
 
 for row in range(sizeOfMap):
     for col in range(sizeOfMap):
@@ -113,8 +118,9 @@ for row in range(sizeOfMap):
             text="n",
             image=Nothing_Icon,
         )
-        b.bind("<Button-1>", lambda event, b=b: btnLClick(b))
-        b.bind("<Button-3>", lambda event, b=b: btnRClick(b))
+        b.bind("<Button-1>", lambda event, b=b: changeRoom(b)) # Left click changes room type
+        b.bind("<Button-2>", resetAllRooms) # Middle click resets all rooms (new level)
+        b.bind("<Button-3>", lambda event, b=b: resetRoom(b)) # Right click resets specific button
         b.grid(row=row + 1, column=col)
 
 
